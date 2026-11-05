@@ -22,6 +22,7 @@ def parse_args(argv=None):
     return parser.parse_args(argv)
 
 def main():
+    args = parse_args()
     nb_cells = 50
 
     rng = random.Random(4200)
