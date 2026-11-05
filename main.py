@@ -3,6 +3,31 @@ import random
 
 from lib import write_grid
 
+def positive_int(value):
+    """Entier strictement positif (pour --nb_cells)."""
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"'{value}' n'est pas un entier")
+    if number <= 0:
+        raise argparse.ArgumentTypeError(
+            f"la valeur doit être strictement positive (reçu : {number})"
+        )
+    return number
+
+
+def non_negative_int(value):
+    """Entier positif ou nul (pour --max_iterations)."""
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"'{value}' n'est pas un entier")
+    if number < 0:
+        raise argparse.ArgumentTypeError(
+            f"la valeur doit être positive ou nulle (reçu : {number})"
+        )
+    return number
+
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(
         description="Simulation du jeu de la vie de Conway."
