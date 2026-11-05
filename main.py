@@ -23,9 +23,9 @@ def parse_args(argv=None):
 
 def main():
     args = parse_args()
-    nb_cells = 50
+    nb_cells = args.nb_cells
 
-    rng = random.Random(4200)
+    rng = random.Random(args.seed)
 
     matrix = [
         [rng.choice([0, 1]) for _ in range(nb_cells)]
@@ -33,7 +33,7 @@ def main():
     ]
 
     iter = 0
-    filename = f"outputs/grid_{iter:04d}.png"
+    filename = f"{args.output_directory}/grid_{iter:04d}.png"
     write_grid(matrix=matrix, filename=filename)
 
 if __name__ == "__main__":
