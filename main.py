@@ -32,9 +32,9 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(
         description="Simulation du jeu de la vie de Conway."
     )
-    parser.add_argument("-n", "--nb_cells", type=int, default=10,
+    parser.add_argument("-n", "--nb_cells", type=positive_int, default=10,
                         help="nombre de cellules par côté (grille aléatoire)")
-    parser.add_argument("-m", "--max_iterations", type=int, default=20,
+    parser.add_argument("-m", "--max_iterations", type=non_negative_int, default=20,
                         help="numéro de la dernière itération à calculer")
     parser.add_argument("-s", "--seed", type=int, default=42,
                         help="graine du générateur aléatoire")
