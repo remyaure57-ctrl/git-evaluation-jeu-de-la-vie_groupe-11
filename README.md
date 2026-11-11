@@ -4,6 +4,13 @@ Simulation du [jeu de la vie de Conway](https://fr.wikipedia.org/wiki/Jeu_de_la_
 
 ## Installation
 
+Pour récupérer le projet, clonez le dépôt Git puis placez-vous dans son dossier :
+
+```
+git clone https://github.com/remyaure57-ctrl/git-evaluation-jeu-de-la-vie_groupe-11.git
+cd git-evaluation-jeu-de-la-vie_groupe-11
+```
+
 Le programme utilise uniquement Python 3 et sa bibliothèque standard : aucune dépendance Python à installer.
 
 Pour générer les vidéos, il faut en plus `ffmpeg` et `gource`.
