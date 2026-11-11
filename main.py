@@ -100,6 +100,86 @@ def lire_grille(texte):
         numero += 1
     return grille
 
+def calcul_generation(matrix,periodique):
+    if periodique:
+        return calcul_generation_periodique(matrix)
+    else:
+        return calcul_generation_fixe(matrix)
+
+def calcul_generation_fixe(matrix):
+    nouv_mat=[]
+    l=len(matrix)
+    for i in range(l):
+        ligne=[]
+        #parcours des voisins en évitant les hors bords.
+        for j in range(l):
+            nb_voisines=0
+            if i!=0:
+                if matrix[i-1][j]==1:
+                    nb_voisines+=1
+            if j!=0:
+                if matrix[i][j-1]==1:
+                    nb_voisines+=1
+            if (i!=0 and j!=0):
+                if matrix[i-1][j-1]==1:
+                    nb_voisines+=1
+            if (i!=l-1 and j!=l-1):
+                if matrix[i+1][j+1]==1:
+                    nb_voisines+=1
+            if (i!=l-1):
+                if matrix[i+1][j]==1:
+                    nb_voisines+=1
+            if (j!=l-1):
+                if matrix[i][j+1]==1:
+                    nb_voisines+=1
+            if (i!=l-1 and j!=0):
+                if matrix[i+1][j-1]==1:
+                    nb_voisines+=1
+            if (j!=l-1 and i!=0):
+                if matrix[i-1][j+1]==1:
+                    nb_voisines+=1
+            #ajout de la cellule en fonction de si la cellule est vivante ou morte et de son nombre de voisins.
+            if matrix[i][j]==0:
+                if nb_voisines==3:
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+            else:
+                if (nb_voisines==2 or nb_voisines==3):
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+        nouv_mat.append(ligne)
+    return nouv_mat
+
+def calcul_generation_periodique(matrix):
+    nouv_mat=[]
+    l=len(matrix)
+    for i in range(l):
+        ligne=[]
+        #parcours des voisins en mode périodique.
+        for j in range(l):
+            nb_voisines=0
+            for k in range(i-1,i+2):
+                for h in range(j-1,j+2):
+                    #On ne compte pas la cellule elle-même
+                    if k==i and h==j:
+                        continue
+                    nb_voisines+=matrix[k%l][h%l]
+            #ajout de la cellule en fonction de si la cellule est vivante ou morte et de son nombre de voisins.
+            if matrix[i][j]==0:
+                if nb_voisines==3:
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+            else:
+                if (nb_voisines==2 or nb_voisines==3):
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+        nouv_mat.append(ligne)
+    return nouv_mat
+
 def main():
     args = parse_args()
    
@@ -110,9 +190,16 @@ def main():
         # Une grille a été envoyée avec | ou < : on la lit
         matrix = lire_grille(sys.stdin.read())
         
+    #Boucle pour générer les itérations
+    m = args.max_iterations
     iter = 0
-    filename = f"{args.output_directory}/grid_{iter:04d}.png"
-    write_grid(matrix=matrix, filename=filename)
+    for i in range(m + 1):
+        filename = f"{args.output_directory}/grid_{iter:04d}.png"
+        write_grid(matrix=matrix, filename=filename)
+        if iter < m:
+            matrix = calcul_generation(matrix, args.periodic)
+            iter += 1
+    print(f"Generation of {m + 1} images in directory {args.output_directory}")
 
 if __name__ == "__main__":
     main()
