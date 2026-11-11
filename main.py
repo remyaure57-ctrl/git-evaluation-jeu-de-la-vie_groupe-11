@@ -46,16 +46,18 @@ def parse_args(argv=None):
                         help="conditions aux limites périodiques")
     return parser.parse_args(argv)
 
-def main():
-    args = parse_args()
-    nb_cells = args.nb_cells
-
-    rng = random.Random(args.seed)
-
-    matrix = [
+def grille_aleatoire(nb_cells, seed):
+    """Crée une grille carrée aléatoire, identique pour une même graine."""
+    rng = random.Random(seed)
+    return [
         [rng.choice([0, 1]) for _ in range(nb_cells)]
         for _ in range(nb_cells)
     ]
+
+def main():
+    args = parse_args()
+   
+    matrix = grille_aleatoire(args.nb_cells, args.seed)
 
     iter = 0
     filename = f"{args.output_directory}/grid_{iter:04d}.png"
