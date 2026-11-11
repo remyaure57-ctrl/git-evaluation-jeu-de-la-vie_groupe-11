@@ -103,8 +103,13 @@ def lire_grille(texte):
 def main():
     args = parse_args()
    
-    matrix = grille_aleatoire(args.nb_cells, args.seed)
-
+    if sys.stdin.isatty():
+        # Personne n'a envoyé de grille : on en crée une au hasard
+        matrix = grille_aleatoire(args.nb_cells, args.seed)
+    else:
+        # Une grille a été envoyée avec | ou < : on la lit
+        matrix = lire_grille(sys.stdin.read())
+        
     iter = 0
     filename = f"{args.output_directory}/grid_{iter:04d}.png"
     write_grid(matrix=matrix, filename=filename)
