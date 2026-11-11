@@ -186,8 +186,12 @@ def format_grille_texte(matrix, iteration):
 
     for ligne in matrix:
         lignes.append(" ".join(str(case) for case in ligne))
-        
+
     return "\n".join(lignes)
+
+def ecrire_sortie_texte(matrix, iteration):
+    """Affiche la grille sur la sortie standard."""
+    print(format_grille_texte(matrix, iteration))
 
 def main():
     args = parse_args()
