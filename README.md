@@ -35,6 +35,55 @@ gource --version
 
 ## Exécution
 
+Le programme se lance depuis la racine du dépôt.
+
+### Sans option
+
+```
+$ python3 main.py
+Generation of 21 images in directory outputs
+```
+
+Crée 21 images (`grid_0000.png` à `grid_0020.png`) dans `outputs`, à partir d'une grille aléatoire de 10 cellules par côté (graine 42).
+
+### Grille aléatoire personnalisée
+
+```
+$ python3 main.py -n 50 -m 200 -s 4200
+Generation of 201 images in directory outputs
+```
+
+### Évolution d'une grille lue sur l'entrée standard
+
+La première ligne donne la taille, puis les lignes de la grille. Bords fixes (par défaut) :
+
+```
+$ cat tests/matrix3/input.txt | python3 main.py -m 1 -t text
+iteration: 1
+0 1 0
+0 0 1
+0 1 0
+```
+
+### Conditions aux limites périodiques
+
+```
+$ cat tests/matrix3/input.txt | python3 main.py -m 1 -p -t text
+iteration: 1
+0 0 0
+0 0 0
+0 0 0
+```
+
+### Erreurs
+
+Une entrée invalide produit un message sur la sortie d'erreur et un code de sortie différent de 0 :
+
+```
+$ printf '2\n1 0\n1 2\n' | python3 main.py -t text
+Error: la ligne 2 contient une case invalide : 2
+```
+
 ## Arguments
 
 | Option courte | Option longue | Description | Valeur par défaut |
