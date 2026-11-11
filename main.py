@@ -100,6 +100,12 @@ def lire_grille(texte):
         numero += 1
     return grille
 
+def calcul_generation(matrix,periodique):
+    if periodique:
+        return calcul_generation_periodique(matrix)
+    else:
+        return calcul_generation_fixe(matrix)
+
 def calcul_generation_fixe(matrix):
     nouv_mat=[]
     l=len(matrix)
