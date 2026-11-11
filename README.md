@@ -51,6 +51,13 @@ gource --version
 
 ## Auteurs
 
+Groupe 11 :
+
+- MAILLOT Benoît, n° étudiant : 45004199
+- AURE Remy, n° étudiant : 45005317
+- SIMONIN Clément, n° étudiant : 45002492
+- ESSOB Alexandre, n° étudiant : 41009089
+
 ## Liens utiles
 
 - [Workshop 3 : rebase et historique final](https://github.com/frozar/git-workshop-3) : organisation Git attendue pour ce projet,
