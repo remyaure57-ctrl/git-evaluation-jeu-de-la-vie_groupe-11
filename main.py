@@ -54,6 +54,18 @@ def grille_aleatoire(nb_cells, seed):
         for _ in range(nb_cells)
     ]
 
+def lire_grille(texte):
+    """Transforme le texte reçu sur STDIN en grille."""
+    lignes = texte.splitlines()
+    grille = []
+    for ligne in lignes[1:]:
+        if ligne.strip() != "":
+            ligne_grille = []
+            for case in ligne.split():
+                ligne_grille.append(int(case))
+            grille.append(ligne_grille)
+    return grille
+
 def main():
     args = parse_args()
    
