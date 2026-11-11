@@ -1,4 +1,5 @@
 import argparse
+import os
 import random
 import sys
 
@@ -180,9 +181,22 @@ def calcul_generation_periodique(matrix):
         nouv_mat.append(ligne)
     return nouv_mat
 
+def format_grille_texte(matrix, iteration):
+    """Transforme une grille en texte."""
+    lignes = [f"iteration: {iteration}"]
+
+    for ligne in matrix:
+        lignes.append(" ".join(str(case) for case in ligne))
+    return "\n".join(lignes)
+
+def ecrire_sortie_texte(matrix, iteration):
+    """Affiche la grille sur la sortie standard."""
+    print(format_grille_texte(matrix, iteration))
+
 def main():
     args = parse_args()
-   
+
+
     if sys.stdin.isatty():
         # Personne n'a envoyé de grille : on en crée une au hasard
         matrix = grille_aleatoire(args.nb_cells, args.seed)
@@ -190,16 +204,24 @@ def main():
         # Une grille a été envoyée avec | ou < : on la lit
         matrix = lire_grille(sys.stdin.read())
         
-    #Boucle pour générer les itérations
+    # Boucle pour calculer les générations
     m = args.max_iterations
-    iter = 0
-    for i in range(m + 1):
-        filename = f"{args.output_directory}/grid_{iter:04d}.png"
-        write_grid(matrix=matrix, filename=filename)
-        if iter < m:
+
+    if args.output_type == "image":
+        os.makedirs(args.output_directory, exist_ok=True)
+
+    for iteration in range(m + 1):
+        if args.output_type == "image":
+            filename = f"{args.output_directory}/grid_{iteration:04d}.png"
+            write_grid(matrix=matrix, filename=filename)
+
+        if iteration < m:
             matrix = calcul_generation(matrix, args.periodic)
-            iter += 1
-    print(f"Generation of {m + 1} images in directory {args.output_directory}")
+
+    if args.output_type == "text":
+        ecrire_sortie_texte(matrix, m)
+    else:
+        print(f"Generation of {m + 1} images in directory {args.output_directory}")
 
 if __name__ == "__main__":
     main()
