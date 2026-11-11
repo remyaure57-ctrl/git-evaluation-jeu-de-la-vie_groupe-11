@@ -180,9 +180,19 @@ def calcul_generation_periodique(matrix):
         nouv_mat.append(ligne)
     return nouv_mat
 
+def format_grille_texte(matrix, iteration):
+    """Transforme une grille en texte."""
+    lignes = [f"iteration: {iteration}"]
+
+    for ligne in matrix:
+        lignes.append(" ".join(str(case) for case in ligne))
+        
+    return "\n".join(lignes)
+
 def main():
     args = parse_args()
-   
+
+
     if sys.stdin.isatty():
         # Personne n'a envoyé de grille : on en crée une au hasard
         matrix = grille_aleatoire(args.nb_cells, args.seed)
