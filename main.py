@@ -190,9 +190,16 @@ def main():
         # Une grille a été envoyée avec | ou < : on la lit
         matrix = lire_grille(sys.stdin.read())
         
+    #Boucle pour générer les itérations
+    m = args.max_iterations
     iter = 0
-    filename = f"{args.output_directory}/grid_{iter:04d}.png"
-    write_grid(matrix=matrix, filename=filename)
+    for i in range(m + 1):
+        filename = f"{args.output_directory}/grid_{iter:04d}.png"
+        write_grid(matrix=matrix, filename=filename)
+        if iter < m:
+            matrix = calcul_generation(matrix, args.periodic)
+            iter += 1
+    print(f"Generation of {m + 1} images in directory {args.output_directory}")
 
 if __name__ == "__main__":
     main()
