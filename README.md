@@ -52,3 +52,16 @@ gource --version
 ## Auteurs
 
 ## Liens utiles
+
+- [Workshop 3 : rebase et historique final](https://github.com/frozar/git-workshop-3) : organisation Git attendue pour ce projet,
+- [Historique final du workshop 3](https://github.com/frozar/git-workshop-3/blob/main/img/historique-final.png) : exemple du graphe à obtenir,
+- [Jeu de la vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) : présentation des règles du jeu de Conway,
+- [Documentation argparse](https://docs.python.org/fr/3/library/argparse.html) : analyse des arguments d'un script Python,
+- [Documentation random](https://docs.python.org/fr/3/library/random.html) : génération de grilles aléatoires reproductibles,
+- [Philosophie d'Unix](https://fr.wikipedia.org/wiki/Philosophie_d%27Unix) : description de la philosophie Unix,
+- [Pipeline (Unix)](https://en.wikipedia.org/wiki/Pipeline_%28Unix%29) : description du pipe,
+- [Installation de WSL](https://learn.microsoft.com/fr-fr/windows/wsl/install) : procédure officielle pour Windows,
+- [Documentation ffmpeg](https://ffmpeg.org/documentation.html) : installation et utilisation de ffmpeg,
+- [Site officiel de Gource](https://gource.io/) : présentation et téléchargement de Gource,
+- [My Gource video production pipeline](https://dev.to/voieducode/my-gource-video-production-pipeline-5eb0) : exemple de création d'une vidéo Gource,
+- [Documentation officielle de git rebase](https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Rebaser-Rebasing) : fonctionnement du rebase.
