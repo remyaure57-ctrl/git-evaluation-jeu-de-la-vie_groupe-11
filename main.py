@@ -146,6 +146,34 @@ def calcul_generation_fixe(matrix):
         nouv_mat.append(ligne)
     return nouv_mat
 
+def calcul_generation_periodique(matrix):
+    nouv_mat=[]
+    l=len(matrix)
+    for i in range(l):
+        ligne=[]
+        #parcours des voisins en mode périodique.
+        for j in range(l):
+            nb_voisines=0
+            for k in range(i-1,i+2):
+                for h in range(j-1,j+2):
+                    #On ne compte pas la cellule elle-même
+                    if k==i and h==j:
+                        continue
+                    nb_voisines+=matrix[k%l][h%l]
+            #ajout de la cellule en fonction de si la cellule est vivante ou morte et de son nombre de voisins.
+            if matrix[i][j]==0:
+                if nb_voisines==3:
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+            else:
+                if (nb_voisines==2 or nb_voisines==3):
+                    ligne.append(1)
+                else:
+                    ligne.append(0)
+        nouv_mat.append(ligne)
+    return nouv_mat
+
 def main():
     args = parse_args()
    
