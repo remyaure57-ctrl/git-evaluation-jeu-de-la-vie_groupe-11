@@ -1,4 +1,5 @@
 import argparse
+import os
 import random
 import sys
 
@@ -205,6 +206,9 @@ def main():
         
     # Boucle pour calculer les générations
     m = args.max_iterations
+
+    if args.output_type == "image":
+        os.makedirs(args.output_directory, exist_ok=True)
 
     for iteration in range(m + 1):
         if args.output_type == "image":
