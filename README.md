@@ -37,6 +37,16 @@ gource --version
 
 ## Arguments
 
+| Option courte | Option longue | Description | Valeur par défaut |
+|---|---|---|---|
+| `-n N` | `--nb_cells N` | nombre de cellules par côté pour une grille aléatoire (entier strictement positif) | `10` |
+| `-m N` | `--max_iterations N` | numéro de la dernière itération à calculer (entier positif ou nul) | `20` |
+| `-s N` | `--seed N` | graine du générateur aléatoire (entier quelconque) | `42` |
+| `-o DOSSIER` | `--output_directory DOSSIER` | dossier dans lequel écrire les images | `outputs` |
+| `-t TYPE` | `--output_type TYPE` | type de sortie : `image` ou `text` | `image` |
+| `-p` | `--periodic` | active les conditions aux limites périodiques | désactivée |
+| `-h` | `--help` | affiche l'aide du programme | — |
+
 ## Vidéos
 
 ## Auteurs
