@@ -1,0 +1,31 @@
+# Groupe 11 - tests automatiques du jeu de la vie
+name: Tests du jeu de la vie
+
+# Lancer les tests à chaque push et à chaque pull request
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    # Ordinateur Linux prêté par GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # Récupérer notre dépôt
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v6
+        
+      # Installer Python 3
+      - name: Installer Python 3
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      # Tester les options du programme
+      - name: Vérifier les options
+        run: sh check_script_options.sh
+
+      # Tester les grilles (bords fixes et périodique)
+      - name: Vérifier les grilles
+        run: sh check_tests.sh
