@@ -105,6 +105,29 @@ Error: la ligne 2 contient une case invalide : 2
 
 ## Vidéos
 
+### Simulation du jeu de la vie
+
+Vidéo : https://www.youtube.com/watch?v=-t9mi0ecip4
+
+Grille aléatoire de 50 cellules par côté, graine `4200`, 2000 itérations, bords fixes.
+
+Génération des images :
+
+```
+mkdir -p outputs/video-seed-4200
+python3 main.py --nb_cells 50 --max_iterations 2000 --seed 4200 \
+  --output_type image --output_directory outputs/video-seed-4200
+```
+
+Assemblage de la vidéo (20 images par seconde) :
+
+```
+ffmpeg -y -framerate 20 -start_number 0 \
+  -i outputs/video-seed-4200/grid_%04d.png -frames:v 2001 \
+  -c:v libx264 -pix_fmt yuv420p -movflags +faststart \
+  outputs/video-seed-4200/game-of-life.mp4
+```
+
 ## Auteurs
 
 Groupe 11 :
