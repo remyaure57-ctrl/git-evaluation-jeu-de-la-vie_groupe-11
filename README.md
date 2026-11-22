@@ -128,6 +128,12 @@ ffmpeg -y -framerate 20 -start_number 0 \
   outputs/video-seed-4200/game-of-life.mp4
 ```
 
+## Intégration continue (GitHub Actions)
+
+On a mis en place GitHub Actions pour ne plus avoir à lancer les tests à la main avant chaque fusion. À chaque push et à chaque pull request, GitHub lance `check_script_options.sh` puis `check_tests.sh` sur une machine Linux. Si un des deux échoue, l'exécution passe en rouge. La configuration se trouve dans `.github/workflows/tests.yml`.
+
+Dernière exécution réussie sur `main` : https://github.com/remyaure57-ctrl/git-evaluation-jeu-de-la-vie_groupe-11/actions/runs/44905424416
+
 ## Auteurs
 
 Groupe 11 :
