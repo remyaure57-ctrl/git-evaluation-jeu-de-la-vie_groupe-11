@@ -127,6 +127,21 @@ ffmpeg -y -framerate 20 -start_number 0 \
   -c:v libx264 -pix_fmt yuv420p -movflags +faststart \
   outputs/video-seed-4200/game-of-life.mp4
 ```
+### Historique du dépôt (Gource)
+
+Vidéo : https://www.youtube.com/watch?v=5_hooj7oa3c
+
+Commandes de génération :
+
+```
+gource -s 2 -r 60 --file-font-size 8 \
+  --title 'Jeu de la vie' --filename-time 2 \
+  --stop-at-end --hide date,usernames -o gource.ppm
+
+ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i gource.ppm \
+  -vcodec libx264 -preset medium -pix_fmt yuv420p \
+  -crf 18 -threads 0 -bf 0 gource.mp4
+```
 
 ## Intégration continue (GitHub Actions)
 
